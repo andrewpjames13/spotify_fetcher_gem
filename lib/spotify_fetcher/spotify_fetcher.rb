@@ -68,5 +68,11 @@ class SpotifyFetcher
    artist = JSON.parse(response.body)["artists"]
    artist.map {|artist| artist["name"]}
  end
- 
+
+ def artist_albums(artist_id)
+   response = @spotify_data.get "/v1/artists/#{artist_id}/albums"
+   albums = JSON.parse(response.body)["items"]
+   albums.map {|album| album["name"]}.uniq
+ end
+
 end
