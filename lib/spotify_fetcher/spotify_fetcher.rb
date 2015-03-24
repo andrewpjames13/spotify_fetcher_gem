@@ -57,5 +57,16 @@ class SpotifyFetcher
    response = @spotify_data.get "/v1/artists/#{artist_id}"
    JSON.parse(response.body)["popularity"]
   end
-  
+
+  def artist_related(artist_id)
+   response = @spotify_data.get "/v1/artists/#{artist_id}/related-artists"
+   JSON.parse(response.body)
+ end
+
+ def artist_related_names(artist_id)
+   response = @spotify_data.get "/v1/artists/#{artist_id}/related-artists"
+   artist = JSON.parse(response.body)["artists"]
+   artist.map {|artist| artist["name"]}
+ end
+ 
 end
