@@ -34,4 +34,14 @@ class SpotifyFetcher
    JSON.parse(response.body)["images"][0]["url"]
   end
 
+  def artist(artist_id)
+     response = @spotify_data.get "/v1/artists/#{artist_id}"
+     JSON.parse(response.body)
+  end
+
+  def artist_name(artist_id)
+     response = @spotify_data.get "/v1/artists/#{artist_id}"
+     JSON.parse(response.body)["name"]
+  end
+
 end
