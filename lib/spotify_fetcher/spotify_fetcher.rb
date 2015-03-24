@@ -27,6 +27,11 @@ class SpotifyFetcher
     response = @spotify_data.get "/v1/albums/#{album_id}"
     items = JSON.parse(response.body)["tracks"]["items"]
     items.map {|item| item["name"] }
-   end
+  end
+
+  def album_artwork(album_id)
+   response = @spotify_data.get "/v1/albums/#{album_id}"
+   JSON.parse(response.body)["images"][0]["url"]
+  end
 
 end
