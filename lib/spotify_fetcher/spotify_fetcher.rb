@@ -13,6 +13,8 @@ class SpotifyFetcher
     end
   end
 
+  # Album
+
   def album(album_id)
     response = @spotify_data.get "/v1/albums/#{album_id}"
     JSON.parse(response.body)
@@ -30,18 +32,30 @@ class SpotifyFetcher
   end
 
   def album_artwork(album_id)
-   response = @spotify_data.get "/v1/albums/#{album_id}"
-   JSON.parse(response.body)["images"][0]["url"]
+    response = @spotify_data.get "/v1/albums/#{album_id}"
+    JSON.parse(response.body)["images"][0]["url"]
   end
 
+  # Artist
+
   def artist(artist_id)
-     response = @spotify_data.get "/v1/artists/#{artist_id}"
-     JSON.parse(response.body)
+   response = @spotify_data.get "/v1/artists/#{artist_id}"
+   JSON.parse(response.body)
   end
 
   def artist_name(artist_id)
-     response = @spotify_data.get "/v1/artists/#{artist_id}"
-     JSON.parse(response.body)["name"]
+   response = @spotify_data.get "/v1/artists/#{artist_id}"
+   JSON.parse(response.body)["name"]
   end
 
+  def artist_genres(artist_id)
+   response = @spotify_data.get "/v1/artists/#{artist_id}"
+   JSON.parse(response.body)["genres"]
+  end
+
+  def artist_popularity(artist_id)
+   response = @spotify_data.get "/v1/artists/#{artist_id}"
+   JSON.parse(response.body)["popularity"]
+  end
+  
 end
